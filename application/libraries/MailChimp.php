@@ -24,7 +24,7 @@ class MailChimp {
     
     public function add_contacts($list_id, $contacts)
     {
-        $this->api()->listBatchSubscribe($list_id,$contacts);
+        $this->api()->listBatchSubscribe($list_id,$contacts,true,true);
         return ;
     }
 
