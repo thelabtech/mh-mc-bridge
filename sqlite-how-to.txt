@@ -1,5 +1,11 @@
-just run:
+Just run:
 
   php artisan migrate:install
 
 and it creates a DB file called 'storage/database/mh-mc-bridge.sqlite'.
+
+Then run:
+
+  php artisan migrate
+
+to run the two migrations and create the 'people' and 'mappings' tables.
