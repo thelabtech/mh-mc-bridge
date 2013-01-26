@@ -6,14 +6,16 @@ class Mapping_Test extends PHPUnit_Framework_TestCase {
 
     public function test_account_mapping_create()
     {
-        Account_Mapping::createTable();
+        Mapping::createTable();
 
-        $obj = new Account_Mapping();
+        $obj = new Mapping();
         $obj->mission_hub_api_key = "123";
+        $obj->mission_hub_role = "Leader";
         $obj->target_system = "MailChimp";
         $obj->target_system_api_key = "456";
+        $obj->target_system_list = "MyList";
         $obj->save();
 
-        $this->assertEquals(1, count(Account_Mapping::all()));
+        $this->assertEquals(1, count(Mapping::all()));
     }
 }
