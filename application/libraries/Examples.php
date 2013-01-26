@@ -1,14 +1,15 @@
 <?php
 
 /**
- * An example of how to call the MissionHub
+ * An example of how to call the MissionHub API.
  *
  * @param $secretKey
  * @throws HttpRequestException
  */
+
 function testMissionHubAPI($secretKey) {
 
-  $curl = curl_init('https://www.missionhub.com/apis/v3/roles?secret=f8602fea64e7c02d3c198a8316e507615f6e976c5798f538f4d0c3bb92452258');
+  $curl = curl_init("https://www.missionhub.com/apis/v3/roles?secret="+$secretKey);
 
   if ($curl === false)
     throw new HttpRequestException('Unable to connect to MissionHub URL!');
@@ -22,12 +23,19 @@ function testMissionHubAPI($secretKey) {
   if ($rc === false)
     throw new HttpException('Unable to set curl options.');
 
-  $result = curl_exec($curl);
+  $response = curl_exec($curl);
 
-  if ($result === false)
+  if ($response === false)
     throw new HttpRequestException('Error returned from MissionHub REST API.');
 
-  print_r(json_decode($result, true));
+  $results = json_decode($response, true);
+
+  if (!array_key_exists('roles', $results))
+    throw new HttpResponseException('Invalid response from MissionHub REST API');
+
+  return $results['roles'];
 }
 
-testMissionHubAPI("");
+// $key =
+// print_r(testMissionHubAPI($key))
+
