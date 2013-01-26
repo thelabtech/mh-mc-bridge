@@ -34,6 +34,9 @@ class Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
+        AccountMapping::createTable();
+        ListMapping::createTable();
+        Person::createTable();
 		return View::make('home.landing_page');
 	}
 
@@ -48,6 +51,13 @@ class Home_Controller extends Base_Controller {
     {
         $mc = new MailChimp(Session::get('mc_key'));
         $mh = new MissionHub(Session::get('mh_key'));
+
+        $accounts = new Account_Mapping();
+        $accounts->mission_hub_api_key = $mh;
+        $accounts->target_system = 'MailChimp';
+        $accounts->target_system_api_key = $mc;
+        $accounts->save();
+
         $lists = $mc->build_lists();
         $labels = $mh->build_labels();
         $params = array('lists' => $lists, 'labels' => $labels);
