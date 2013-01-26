@@ -2,6 +2,8 @@
 
 class Home_Controller extends Base_Controller {
 
+    public $restful = true;
+
 	/*
 	|--------------------------------------------------------------------------
 	| The Default Controller
@@ -30,9 +32,20 @@ class Home_Controller extends Base_Controller {
 	|
 	*/
 
-	public function action_index()
+	public function get_index()
 	{
-		return View::make('home.index');
+		return View::make('home.landing_page');
 	}
 
+    public function post_index()
+    {
+        Session::put('mh-key', Input::get('mh-key'));
+        Session::put('mc-key', Input::get('mc-key'));
+        return Redirect::to('select_labels');
+    }
+
+    public function get_select_labels()
+    {
+        
+    }
 }
