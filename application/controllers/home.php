@@ -34,6 +34,8 @@ class Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
+        Mapping::createTable();
+        Person::createTable();
 		return View::make('home.landing_page');
 	}
 
@@ -52,5 +54,12 @@ class Home_Controller extends Base_Controller {
         $labels = $mh->build_labels();
         $params = array('lists' => $lists, 'labels' => $labels);
         return View::make('home.select_labels')->with($params);
+    }
+
+    public function post_select_labels()
+    {
+        $mh = new MissionHub(Session::get('mh_key'));
+        $contacts = $mh->build_contacts(Input::get('mh_label'));
+        return View::make('home.show_contacts')->with(array('contacts' => $contacts));
     }
 }

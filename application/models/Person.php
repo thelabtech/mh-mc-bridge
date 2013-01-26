@@ -1,15 +1,24 @@
-<?php namespace mh_mc_bridge\entities;
+<?php
 
-class Person extends Eloquent {
+/**
+ * A contact.
+ */
+class Person extends Eloquent
+{
+    public $first_name;
+    public $last_name;
+    public $email_address;
 
-  public $firstName;
-  public $lastName;
-  public $emailAddress;
+    public static function createTable() {
 
-  public function __construct($firstName, $lastName, $emailAddress)
-  {
-    $this->firstName = $firstName;
-    $this->lastName = $lastName;
-    $this->emailAddress = $emailAddress;
-  }
+        Schema::create('people', function($table) {
+            $table->increments('id');
+            $table->string('first_name');
+            $table->string('last_lame');
+            $table->string('email_address');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            $table->unique('email_address');
+        });
+    }
 }

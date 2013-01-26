@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
-    <form action="{{ URL::to('home/index') }}" method="POST">
+    <form action="{{ URL::to('home/select_labels') }}" method="POST">
         <label for="mh_label">Choose the mission hub label you want to: </label>
         <select name="mh_label" id="mh_label">
             @foreach ($labels as $id => $label)
