@@ -46,8 +46,10 @@ class Home_Controller extends Base_Controller {
 
     public function get_select_labels()
     {
-        $lists = MailChimp::build_lists(Session::get('mc_key'));
-        $labels = MissionHub::get_labels(Session::get('mh_key'));
+        $mc = new MailChimp(Session::get('mc_key'));
+        $mh = new MissionHub(Session::get('mh_key'));
+        $lists = $mc->build_lists();
+        $labels = $mh->build_labels();
         $params = array('lists' => $lists, 'labels' => $labels);
         return View::make('home.select_labels')->with($params);
     }
