@@ -1,13 +1,19 @@
 <?php
 
 class MailChimp {
-    
-    public static function test_MailChimp()
+    private static $_lists = null;
+
+    public static function build_lists($api_key)
     {
-        $api = new MCAPI("802a9c43b17e0cd90419f9ae55c77423-us6");
-        return $api->lists();
+        if (MailChimp::$_lists === null)
+        {
+            $api = new MCAPI($api_key);
+            $object = $api->lists();
+            $lists = $object['data'];
+            MailChimp::$_lists = array();
+            foreach ($lists as $list)
+                MailChimp::$_lists[$list['id']] = $list['name'];
+        }
+        return MailChimp::$_lists;
     }
 }
-
-
-?>
