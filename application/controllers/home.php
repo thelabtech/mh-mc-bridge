@@ -39,13 +39,16 @@ class Home_Controller extends Base_Controller {
 
     public function post_index()
     {
-        Session::put('mh-key', Input::get('mh-key'));
-        Session::put('mc-key', Input::get('mc-key'));
-        return Redirect::to('select_labels');
+        Session::put('mh_key', Input::get('mh_key'));
+        Session::put('mc_key', Input::get('mc_key'));
+        return Redirect::to_action('home@select_labels');
     }
 
     public function get_select_labels()
     {
-        
+        $lists = MailChimp::build_lists(Session::get('mc_key'));
+        $labels = MissionHub::get_labels(Session::get('mh_key'));
+        $params = array('lists' => $lists, 'labels' => $labels);
+        return View::make('home.select_labels')->with($params);
     }
 }
