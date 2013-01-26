@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
-    <form action="{{ URL::to('base/home') }}" method="POST">
-        <label>MailChimp API Key: </label><input type="text" name="mc-key" id="mc-key">
-        <label>MissionHub API Key: </label><input type="text" name="mh-key" id="mh-key">
-        <input type="submit">
+    <form action="{{ URL::to('home/index') }}" method="POST">
+        <label for="mc_key">MailChimp API Key: </label><input type="text" name="mc_key" id="mc_key">
+        <label for="mh_key">MissionHub API Key: </label><input type="text" name="mh_key" id="mh_key">
+        <input type="submit" value="DO STUFF!!!">
     </form>
 </body>
 </html>
