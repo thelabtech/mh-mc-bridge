@@ -6,7 +6,7 @@ class MailChimp {
     private $_api;
     
     public function __construct($api_key) {
-        $this->api_key = $api_key;
+        $this->_api_key = $api_key;
     }
 
     public function build_lists()
@@ -24,8 +24,10 @@ class MailChimp {
     
     public function add_contacts($list_id, $contacts)
     {
-        $this->api()->listBatchSubscribe($list_id,$contacts,true,true);
-        return ;
+        $this->api()->listBatchSubscribe($list_id,$contacts,false,true);
+        if($this->api()->errorCode)
+            return $this->api()->errorCode;
+        return 1; 
     }
 
     public function api()

@@ -58,6 +58,8 @@ class Home_Controller extends Base_Controller {
     {
         $mh = new MissionHub(Session::get('mh_key'));
         $contacts = $mh->build_contacts(Input::get('mh_label'));
-        return View::make('home.show_contacts')->with(array('contacts' => $contacts));
+        $mc = new MailChimp(Session::get('mc_key'));
+        $mc->add_contacts(Input::get('mc_list'), $contacts);
+        return View::make('home.success');
     }
 }
