@@ -63,7 +63,7 @@ return array(
 
 		'sqlite' => array(
 			'driver'   => 'sqlite',
-			'database' => ':memory:'
+			'database' => 'mh-mc-bridge.db'
 		)
 
 	),

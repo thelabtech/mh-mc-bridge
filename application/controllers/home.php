@@ -34,8 +34,6 @@ class Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-        Mapping::createTable();
-        Person::createTable();
 		return View::make('home.landing_page');
 	}
 

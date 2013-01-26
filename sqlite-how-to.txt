@@ -1,0 +1,5 @@
+cd storage/database
+sqlite3 mh-mc-bridge.db
+create table example_table ( col1 INTEGER );
+drop table example_table;
+ctrl-C
