@@ -1,18 +1,90 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Missionhub => Mailchimp</title>
-    <meta name="viewport" content="width=device-width">
+
+<style type="text/css"> 
+
+html {
+background-image:url('{{ URL::to_asset('img/background.jpg') }}');
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#wrapper{
+	width:960px;
+	margin:0 auto;
+	position:relative;
+	text-align: center;
+}	
+
+.header-text {
+font-family: 'Lato', sans-serif;
+font-size: 60px;
+color: #fff;
+font-weight: 100;
+}
+
+.text {
+font-family: 'Lato', sans-serif;
+font-size: 18px;
+color: #fff;
+font-weight: 300;
+margin: 10px;
+padding: 10px;
+}
+
+input[type="text"] {
+font-family: 'Lato', sans-serif;
+font-size: 16px;
+color: #000;
+font-weight: 300;
+margin: 10px;
+}
+
+#submit {
+font-family: 'Lato', sans-serif;
+font-size: 36px;
+color: #fff;
+font-weight: 100;
+background-color: rgba(94,167,79,0.4);
+width: 135px;
+ height: 60px;
+ border: none;
+ margin: 0;
+ padding: 0;
+ border-radius: 15px;
+}
+
+#submit:hover{
+background-color: rgba(56,128,42,0.4);
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <form action="{{ URL::to('home/index') }}" method="POST">
-        <label for="mc_key">MailChimp API Key: </label><input type="text" name="mc_key" id="mc_key">
-        <p>Hint: 802a9c43b17e0cd90419f9ae55c77423-us6</p>
-        <label for="mh_key">MissionHub API Key: </label><input type="text" name="mh_key" id="mh_key">
-        <p>Hint: f8602fea64e7c02d3c198a8316e507615f6e976c5798f538f4d0c3bb92452258</p>
-        <input type="submit" value="DO STUFF!!!">
-    </form>
+<div id="wrapper">
+<span class="header-text">Mission Monkey Input</span>
+
+<br><br>
+<span class="text">
+
+<form action="{{ URL::to('home/index') }}" method="POST">
+MailChimp API Key: <input type="text" name="mc_key" id="mc_key">
+<br><br>
+Missionhub API Key: <input type="text" name="mh_key" id="mh_key">
+<br><br>
+<input type="submit" value="Submit" id="submit">
+</form>
+
+</span>
+
+</div>
+
 </body>
-</html>

@@ -68,10 +68,11 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => '127.0.0.1',
-			'database' => 'database',
+			'host'     => 'localhost',
+            'unix_socket'   => '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
+			'database' => 'mc-mh-bridge',
 			'username' => 'root',
-			'password' => '',
+			'password' => 'qweasd',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),

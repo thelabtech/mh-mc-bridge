@@ -50,16 +50,19 @@ class Home_Controller extends Base_Controller {
         $mh = new MissionHub(Session::get('mh_key'));
         $lists = $mc->build_lists();
         $labels = $mh->build_labels();
-        $params = array('lists' => $lists, 'labels' => $labels);
+        $params = array('lists' => $lists, 'labels' => $labels, 'mc_key' => Session::get('mc_key'), 'mh_key' => Session::get('mh_key'));
         return View::make('home.select_labels')->with($params);
     }
 
     public function post_select_labels()
     {
-        $mh = new MissionHub(Session::get('mh_key'));
-        $contacts = $mh->build_contacts(Input::get('mh_label'));
-        $mc = new MailChimp(Session::get('mc_key'));
-        $mc->add_contacts(Input::get('mc_list'), $contacts);
+        $mapping = new Mapping();
+        $mapping->mission_hub_api_key = Session::get('mh_key');
+        $mapping->target_system_api_key = Session::get('mc_key');
+        $mapping->mission_hub_role = Input::get('mh_label');
+        $mapping->target_system = 'MailChimp';
+        $mapping->target_system_list = Input::get('mc_list');
+        $mapping->save();
         return View::make('home.success');
     }
 }
