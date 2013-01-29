@@ -17,8 +17,9 @@ class Cron_Controller extends Base_Controller {
             echo 'mh_role: '.$role.'<br>';
             $contacts = $mh->build_contacts($role);
             foreach ($contacts as $contact)
-                echo $contact.'<br>';
-            $mc->add_contacts($list_id, $contacts);
+                echo $contact->FNAME.' '.$contact->LNAME.' ('.$contact->EMAIL.')<br>';
+            if (($error = $mc->add_contacts($list_id, $contacts)) != 1)
+                echo 'Error: '.$error;
         }
     }
 }

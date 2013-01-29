@@ -68,9 +68,17 @@ class MissionHub
             foreach ($object->people as $person)
             {
                 $contact = array('FNAME' => $person->first_name, 'LNAME' => $person->last_name);
+                $first = true;
                 foreach ($person->email_addresses as $email_address)
+                {
+                    if ($first)
+                    {
+                        $contact['EMAIL'] = $email_address->email;
+                        $first = false;
+                    }
                     if ($email_address->primary)
                         $contact['EMAIL'] = $email_address->email;
+                }
                 $this->_contacts[] = $contact;
             }
         }
