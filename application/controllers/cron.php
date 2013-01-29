@@ -14,11 +14,11 @@ class Cron_Controller extends Base_Controller {
             $list_id = $mapping->target_system_list;
             echo '<p>Mailchimp list id: '.$list_id.'</p>';
             $role = $mapping->mission_hub_role;
-            echo '<p>Missionhub Role(Label?) ID: '.$role.'</p>>';
+            echo '<p>Missionhub Role(Label?) ID: '.$role.'</p>';
             $contacts = $mh->build_contacts($role);
             echo '<h3>Contacts</h3><ul>';
             foreach ($contacts as $contact)
-                echo '<li>'.$contact['FNAME'].' '.$contact['LNAME'].(isset($contact['EMAIL']) ? ' ('.$contact['EMAIL'].')' : '(NO EMAIL').'</li>';
+                echo '<li>'.$contact['FNAME'].' '.$contact['LNAME'].(isset($contact['EMAIL']) ? ' ('.$contact['EMAIL'].')' : '(NO EMAIL)').'</li>';
             echo '</ul>';
             if (($error = $mc->add_contacts($list_id, $contacts)) != 1)
                 echo '<h3 style="color: #FF0000;">Error: '.$error.'</h3>';
